@@ -1,4 +1,4 @@
-package br.com.alura.rh;
+package br.com.rh;
 
 import java.io.Serial;
 
