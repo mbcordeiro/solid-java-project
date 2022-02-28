@@ -10,24 +10,19 @@ public class Employee {
 
 	private String name;
 	private String document;
-	private Position position;
+	private EmployeePosition employeePosition;
 	private BigDecimal salary;
 	private LocalDate dateLastReadjustment;
 
-	public Employee(String nome, String cpf, Position cargo, BigDecimal salario) {
+	public Employee(String nome, String cpf, EmployeePosition cargo, BigDecimal salario) {
 		this.name = nome;
 		this.document = cpf;
-		this.position = cargo;
+		this.employeePosition = cargo;
 		this.salary = salario;
 	}
 
-	public void readjustSalary(BigDecimal increase) {
-		BigDecimal readjustmentPercentage = increase.divide(salary, RoundingMode.HALF_UP);
-		if (readjustmentPercentage.compareTo(new BigDecimal("0.4")) > 0) {
-			throw new ValidationException("Readjustment cannot exceed 40% of salary!");
-		}
-		this.salary = this.salary.add(increase);
-		this.dateLastReadjustment = LocalDate.now();
+	public void updateSalary(BigDecimal newSalary) {
+		this.salary = newSalary;
 	}
 
 	public String getName() {
@@ -46,12 +41,12 @@ public class Employee {
 		this.document = document;
 	}
 
-	public Position getPosition() {
-		return position;
+	public EmployeePosition getEmployeePosition() {
+		return employeePosition;
 	}
 
-	public void setPosition(Position position) {
-		this.position = position;
+	public void setEmployeePosition(EmployeePosition employeePosition) {
+		this.employeePosition = employeePosition;
 	}
 
 	public BigDecimal getSalary() {

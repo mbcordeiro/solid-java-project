@@ -1,6 +1,6 @@
 package br.com.rh.model;
 
-public enum Position {
+public enum EmployeePosition {
 
 	ASSISTANT,
 	ANALYST,
