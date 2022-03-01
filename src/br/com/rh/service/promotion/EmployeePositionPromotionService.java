@@ -12,6 +12,8 @@ public class EmployeePositionPromotionService {
         if (isEligible) {
             final var newEmployeePosition = actualEmployeePosition.getNextPosition();
             employee.promote(newEmployeePosition);
+        } else {
+            throw new ValidationException("Employee cannot be promoted!");
         }
     }
 }
