@@ -1,4 +1,4 @@
-package br.com.rh.service;
+package br.com.rh.service.readjustment;
 
 import br.com.rh.model.Employee;
 import br.com.rh.validation.ValidationReadjustment;
