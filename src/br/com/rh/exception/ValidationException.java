@@ -1,4 +1,4 @@
-package br.com.rh;
+package br.com.rh.exception;
 
 import java.io.Serial;
 

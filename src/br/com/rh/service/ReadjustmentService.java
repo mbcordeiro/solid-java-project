@@ -1,21 +1,21 @@
 package br.com.rh.service;
 
-import br.com.rh.ValidationException;
 import br.com.rh.model.Employee;
+import br.com.rh.validation.ValidationReadjustment;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.time.LocalDate;
+import java.util.List;
 
 public class ReadjustmentService {
-    public void readjustEmployeeSalary(Employee employee, BigDecimal increase) {
+    private final List<ValidationReadjustment> validationReadjustmentList;
 
-        final var currentWage = employee.getSalary();
-        final var readjustmentPercentage = increase.divide(currentWage, RoundingMode.HALF_UP);
-        if (readjustmentPercentage.compareTo(new BigDecimal("0.4")) > 0) {
-            throw new ValidationException("Readjustment cannot exceed 40% of salary!");
-        }
-        final var readjustSalary = currentWage.add(increase);
+    public ReadjustmentService(List<ValidationReadjustment> validationReadjustmentList) {
+        this.validationReadjustmentList = validationReadjustmentList;
+    }
+
+    public void readjustEmployeeSalary(Employee employee, BigDecimal increase) {
+        this.validationReadjustmentList.forEach(v -> v.validate(employee, increase));
+        final var readjustSalary = employee.getSalary().add(increase);
         employee.updateSalary(readjustSalary);
     }
 }
