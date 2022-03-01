@@ -12,20 +12,14 @@ public class Promotion implements TaxableReadjustment{
         this.date = date;
     }
 
-    public BigDecimal getValue() {
+    @Override
+    public BigDecimal value() {
         return value;
     }
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
-
-    public LocalDate getDate() {
+    @Override
+    public LocalDate date() {
         return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
     }
 
     @Override
